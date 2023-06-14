@@ -1,0 +1,29 @@
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../controller/cubit/news_cubit.dart';
+import '../widgets/build_widgets.dart';
+
+class BusinessScreen extends StatelessWidget {
+  const BusinessScreen({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocConsumer<NewsCubit,NewsState>(
+        listener: (BuildContext context, state) {  },
+        builder: (BuildContext context, Object? state) {
+          return ConditionalBuilder(
+            condition:NewsCubit.get(context).business.length >0 ,
+            builder: (BuildContext context) => ListView.separated(
+              physics: const BouncingScrollPhysics(),
+                itemBuilder:(context, index) =>  buildItemNews(NewsCubit.get(context).business[index],context),
+                separatorBuilder:(context,index)=> const Divider(),
+                itemCount: NewsCubit.get(context).business.length),
+            fallback: (BuildContext context) =>const Center(child: CircularProgressIndicator()),
+
+
+          );}
+    );
+  }
+}
