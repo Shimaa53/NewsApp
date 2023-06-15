@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
       child: BlocConsumer<NewsCubit,NewsState>(
           listener: (BuildContext context, state) {  },
           builder: (context,state) {
-            //NewsCubit.get(context).getTheme();
+            NewsCubit.get(context).getTheme();
             return MaterialApp(
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
